@@ -27,6 +27,7 @@ public class SecurityConfiguration {
 
     private final UserService userService;
 
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws  Exception{
         http.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request -> request.requestMatchers("/api/v1/auth/**")
