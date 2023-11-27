@@ -3,6 +3,7 @@ package com.example.SpringSecurity.JWT.config;
 import com.example.SpringSecurity.JWT.entities.Role;
 import com.example.SpringSecurity.JWT.services.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -23,8 +24,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfiguration {
 
+    @Autowired
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
+    @Autowired
     private final UserService userService;
 
     @Bean
@@ -57,6 +60,7 @@ public class SecurityConfiguration {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
         return config.getAuthenticationManager();
     }
