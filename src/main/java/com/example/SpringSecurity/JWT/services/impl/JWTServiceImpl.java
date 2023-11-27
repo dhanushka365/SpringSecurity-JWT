@@ -22,7 +22,7 @@ public class JWTServiceImpl implements JWTService {
         return Jwts.builder().setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis()+ 1000*60*24))//1day
-                .signWith(getSignKey(), SignatureAlgorithm.HS512)
+                .signWith(getSignKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
@@ -30,7 +30,7 @@ public class JWTServiceImpl implements JWTService {
         return Jwts.builder().setClaims(extraClaims).setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis()+ 604800000))//7days
-                .signWith(getSignKey(), SignatureAlgorithm.HS512)
+                .signWith(getSignKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
